@@ -8,7 +8,7 @@ export class Spinner extends Component<SpinnerProps> {
   render() {
     return (
       <svg
-        className={`${this.props.className} animate-spin`}
+        className={`${(this.props.className ?? '') + ' '}animate-spin`}
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
