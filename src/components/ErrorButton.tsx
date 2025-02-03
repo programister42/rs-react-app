@@ -19,7 +19,7 @@ export class ErrorButton extends Component<ErrorButtonProps> {
         className={`${this.props.className ?? ''} w-fit block rounded-md px-3.5 py-2.5 text-center text-sm font-semibold text-red-600 ring-1 shadow-xs ring-red-200 ring-inset hover:ring-red-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600`}
         onClick={this.handleClick}
       >
-        Trow Error<span className="ml-2">🚨</span>
+        Throw error<span className="ml-2">🚨</span>
       </button>
     );
   }
