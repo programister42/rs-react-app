@@ -49,7 +49,7 @@ export class Results extends Component<ResultsProps> {
     );
 
     return (
-      <ul className="inset-px flex h-full flex-col overflow-hidden rounded-lg bg-white p-8 ring-1 shadow-sm ring-black/5 max-lg:rounded-t-[2rem] sm:p-10">
+      <ul className="inset-px flex h-full flex-col overflow-hidden rounded-lg bg-white p-8 ring-1 shadow-sm ring-black/5 sm:p-10">
         {error || loader || books || noContent}
       </ul>
     );
