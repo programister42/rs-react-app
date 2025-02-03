@@ -10,9 +10,11 @@ interface TopControlsState {
   search: string;
 }
 
+const LS_SEARCH = 'SEARCH';
+
 export class TopControls extends Component<TopControlsProps, TopControlsState> {
   state: TopControlsState = {
-    search: localStorage.getItem('SEARCH') ?? '',
+    search: localStorage.getItem(LS_SEARCH) ?? '',
   };
 
   componentDidMount(): void {
@@ -24,7 +26,7 @@ export class TopControls extends Component<TopControlsProps, TopControlsState> {
   };
 
   handleSearch = async () => {
-    localStorage.setItem('SEARCH', this.state.search);
+    localStorage.setItem(LS_SEARCH, this.state.search);
     this.props.onSearch(this.state.search.trim());
   };
 
