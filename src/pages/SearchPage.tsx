@@ -36,7 +36,7 @@ export class SearchPage extends Component<unknown, SearchPageState> {
     if (!search) return;
 
     this.context.setError(null);
-    this.setState({ ...this.state, isLoading: true });
+    this.setState({ isLoading: true });
 
     const q = encodeURIComponent(search);
     const url = `${OPEN_LIBRARY_URL}/search.json?q=${q}&limit=${PAGE_SIZE}`;
@@ -48,6 +48,8 @@ export class SearchPage extends Component<unknown, SearchPageState> {
   };
 
   render() {
+    const { isLoading, response } = this.state;
+
     return (
       <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
         <div
@@ -74,14 +76,8 @@ export class SearchPage extends Component<unknown, SearchPageState> {
           </p>
         </div>
         <div className="mx-auto mt-16 flex max-w-xl flex-col gap-6 sm:mt-20">
-          <TopControls
-            onSearch={this.handleSearch}
-            isLoading={this.state.isLoading}
-          />
-          <Results
-            response={this.state.response}
-            isLoading={this.state.isLoading}
-          />
+          <TopControls onSearch={this.handleSearch} isLoading={isLoading} />
+          <Results response={response} isLoading={isLoading} />
           <ErrorButton className="ml-auto" />
         </div>
       </div>
