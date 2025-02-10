@@ -22,7 +22,7 @@ export function SearchPage() {
   }, [error]);
 
   const handleSearch = async (search: string) => {
-    search ||= 'a';
+    search ||= 'aa';
 
     setError(null);
     setIsLoading(true);

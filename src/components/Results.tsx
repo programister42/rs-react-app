@@ -34,10 +34,12 @@ export function Results({ response, isLoading }: ResultsProps) {
           <h3 className="text-lg font-medium tracking-tight text-gray-950">
             📖&nbsp;{book.title}
           </h3>
-          <p className="text-sm/6 text-gray-600 ">
-            {book.author_name.length > 1 ? '👥' : '👤'}&nbsp;
-            {book.author_name.join(', ')}
-          </p>
+          {book.author_name && (
+            <p className="text-sm/6 text-gray-600 ">
+              {book.author_name.length > 1 ? '👥' : '👤'}&nbsp;
+              {book.author_name.join(', ')}
+            </p>
+          )}
         </li>
       );
     });
