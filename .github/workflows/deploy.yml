@@ -1,4 +1,4 @@
-name: Deploy site to Pages
+name: Deploy Pull Request Preview to GitHub Pages
 
 on:
   pull_request:
