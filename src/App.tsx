@@ -1,10 +1,5 @@
-import { ErrorBoundary } from './components/ErrorBoundary';
-import { SearchPage } from './pages/SearchPage';
+import { Outlet } from 'react-router';
 
 export default function App() {
-  return (
-    <ErrorBoundary>
-      <SearchPage />
-    </ErrorBoundary>
-  );
+  return <Outlet />;
 }

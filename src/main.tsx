@@ -1,8 +1,12 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter, Route, Routes } from 'react-router';
-import App from './App.tsx';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
+import App from './App';
+import { ErrorBoundary } from './components/ErrorBoundary';
+import { FancyBackground } from './components/FancyBackground';
 import './index.css';
+import { DetailsPage } from './pages/DetailsPage';
+import { SearchPage } from './pages/SearchPage';
 
 const rootElement = document.getElementById('root');
 
@@ -14,10 +18,22 @@ const BASENAME = import.meta.env.BASE_URL;
 
 createRoot(rootElement).render(
   <StrictMode>
-    <BrowserRouter basename={BASENAME}>
-      <Routes>
-        <Route path="/" element={<App />} />
-      </Routes>
-    </BrowserRouter>
+    <ErrorBoundary>
+      <BrowserRouter basename={BASENAME}>
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route index element={<Navigate to="/search" />}></Route>
+          </Route>
+          <Route path="/search">
+            <Route element={<FancyBackground />}>
+              <Route index element={<SearchPage />} />
+              <Route path=":page" element={<SearchPage />}>
+                <Route path=":details" element={<DetailsPage />} />
+              </Route>
+            </Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </ErrorBoundary>
   </StrictMode>
 );
