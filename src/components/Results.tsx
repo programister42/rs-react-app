@@ -3,7 +3,7 @@ import { BookSearchResponse } from '../api/models';
 import { ErrorContext } from './ErrorBoundary';
 
 interface ResultsProps {
-  response?: BookSearchResponse;
+  response: BookSearchResponse | null;
   isLoading: boolean;
 }
 

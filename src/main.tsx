@@ -22,7 +22,7 @@ createRoot(rootElement).render(
       <BrowserRouter basename={BASENAME}>
         <Routes>
           <Route path="/" element={<App />}>
-            <Route index element={<Navigate to="/search" />}></Route>
+            <Route index element={<Navigate to="/search" />} />
           </Route>
           <Route path="/search">
             <Route element={<FancyBackground />}>
