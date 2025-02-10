@@ -37,7 +37,7 @@ jobs:
       - name: Build with npm
         run: npm run build
         env:
-          BASE_URL: ${{ github.server_url }}/${{ github.repository }}
+          BASE_PATH: ${{ secrets.BASE_PATH }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -54,3 +54,15 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Add comment to PR
+        id: add-pr-comment
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '🚀 Deployed to ${{ steps.deployment.outputs.page_url }} ✅'
+            })

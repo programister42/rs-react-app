@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router';
-import { BASE_URL } from './api/urls.ts';
+import { BASE_PATH } from './api/urls.ts';
 import App from './App.tsx';
 import './index.css';
 
@@ -13,7 +13,7 @@ if (!rootElement) {
 
 createRoot(rootElement).render(
   <StrictMode>
-    <BrowserRouter basename={BASE_URL}>
+    <BrowserRouter basename={BASE_PATH}>
       <Routes>
         <Route path="/" element={<App />} />
       </Routes>
