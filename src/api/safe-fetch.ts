@@ -2,15 +2,37 @@ type SafeFetchResponse<T> =
   | { error: Error; data: null }
   | { error: null; data: T };
 
-export async function safeFetch<T>(url: string): Promise<SafeFetchResponse<T>> {
+export async function safeFetch<T>(
+  ...args: Parameters<typeof fetch>
+): Promise<SafeFetchResponse<T>> {
   try {
-    const res = await fetch(url);
+    const res = await fetch(...args);
 
     if (!res.ok) {
       return { data: null, error: mapStatusToError(res.status) };
     }
 
     const data = await res.json();
+    return { error: null, data };
+  } catch (e) {
+    return {
+      data: null,
+      error: e instanceof Error ? e : new Error('Unknown error'),
+    };
+  }
+}
+
+export async function safeFetchBlob(
+  ...args: Parameters<typeof fetch>
+): Promise<SafeFetchResponse<Blob>> {
+  try {
+    const res = await fetch(...args);
+
+    if (!res.ok) {
+      return { data: null, error: mapStatusToError(res.status) };
+    }
+
+    const data = await res.blob();
     return { error: null, data };
   } catch (e) {
     return {

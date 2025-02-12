@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import { BookSearchResponse } from '../api/models';
 import { safeFetch } from '../api/safe-fetch';
-import { OPEN_LIBRARY_URL } from '../api/urls';
+import { OPEN_LIBRARY_SEARCH_API } from '../api/urls';
 import { ErrorContext } from '../components/ErrorBoundary';
 import { ErrorButton } from '../components/ErrorButton';
 import { Results } from '../components/Results';
@@ -13,13 +14,15 @@ export function SearchPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [response, setResponse] = useState<BookSearchResponse | null>(null);
   const { error, setError } = useContext(ErrorContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (error) {
       setIsLoading(false);
       setResponse(null);
+      navigate('/search');
     }
-  }, [error]);
+  }, [error, navigate]);
 
   const handleSearch = async (search: string) => {
     search ||= 'aa';
@@ -28,7 +31,11 @@ export function SearchPage() {
     setIsLoading(true);
 
     const q = encodeURIComponent(search);
-    const url = `${OPEN_LIBRARY_URL}/search.json?q=${q}&limit=${PAGE_SIZE}`;
+    const searchParams = new URLSearchParams({
+      q,
+      limit: PAGE_SIZE.toString(),
+    });
+    const url = `${OPEN_LIBRARY_SEARCH_API}?${searchParams}`;
 
     const { error, data } = await safeFetch<BookSearchResponse>(url);
 

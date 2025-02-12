@@ -12,3 +12,10 @@ export interface Book {
   first_publish_year: number;
   edition_count: number;
 }
+
+export interface Work {
+  key: string;
+  title: string;
+  description: string | { value: string };
+  covers: number[];
+}
