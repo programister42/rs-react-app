@@ -14,17 +14,17 @@ export function TopControls({ isLoading }: TopControlsProps) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    const newSearchParams = new URLSearchParams(searchParams);
-    newSearchParams.set('q', search || 'aa');
-    newSearchParams.set('page', '1');
-    setSearchParams(newSearchParams);
+    handleSearch();
     // eslint-disable-next-line react-compiler/react-compiler
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search]);
+  }, []);
 
   const handleSearch = async () => {
     const trimmedSearch = search.trim();
-    setSearch(trimmedSearch);
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.set('q', trimmedSearch || 'aa');
+    newSearchParams.set('page', '1');
+    setSearchParams(newSearchParams);
   };
 
   return (
