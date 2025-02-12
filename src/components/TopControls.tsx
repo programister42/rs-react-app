@@ -1,27 +1,30 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
+import { useSearchParams } from 'react-router';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { Spinner } from './Spinner';
 
 interface TopControlsProps {
-  onSearch: (search: string) => unknown;
   isLoading: boolean;
 }
 
 const LS_SEARCH = 'SEARCH';
 
-export function TopControls({ onSearch, isLoading }: TopControlsProps) {
+export function TopControls({ isLoading }: TopControlsProps) {
   const [search, setSearch] = useLocalStorage(LS_SEARCH, '');
-  const initialSearchRef = useRef(search);
-  const initialOnSearchFnRef = useRef(onSearch);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    const initialSearch = initialSearchRef.current;
-    const initialOnSearchFn = initialOnSearchFnRef.current;
-    initialOnSearchFn(initialSearch.trim());
-  }, []);
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.set('q', search || 'aa');
+    newSearchParams.set('page', '1');
+    setSearchParams(newSearchParams);
+    // eslint-disable-next-line react-compiler/react-compiler
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [search]);
 
   const handleSearch = async () => {
-    onSearch(search.trim());
+    const trimmedSearch = search.trim();
+    setSearch(trimmedSearch);
   };
 
   return (
