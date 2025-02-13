@@ -22,11 +22,11 @@ createRoot(rootElement).render(
       <BrowserRouter basename={BASENAME}>
         <Routes>
           <Route path="/" element={<App />}>
-            <Route index element={<Navigate to="/search" />} />
+            <Route index element={<Navigate to="search" />} />
           </Route>
           <Route element={<FancyBackground />}>
-            <Route path="/search" element={<SearchPage />}>
-              <Route path="/:category/:workId" element={<DetailsPage />} />
+            <Route path="search" element={<SearchPage />}>
+              <Route path=":category/:workId" element={<DetailsPage />} />
             </Route>
           </Route>
         </Routes>
