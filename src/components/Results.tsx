@@ -63,7 +63,7 @@ export function Results({ response, isLoading }: ResultsProps) {
           )}
         >
           <div className="flex flex-col">
-            <h3 className="text-sm/6 font-semibold text-gray-900 group-hover:text-indigo-600">
+            <h3 className="text-sm/6 font-semibold text-gray-900 group-hover:text-indigo-600 group-[.active]:text-indigo-600">
               📖&nbsp;{book.title}
             </h3>
             {book.author_name && (
@@ -73,7 +73,13 @@ export function Results({ response, isLoading }: ResultsProps) {
               </p>
             )}
           </div>
-          <span className={'invisible text-lg group-hover:visible'}>👉</span>
+          <span
+            className={
+              'invisible text-lg group-hover:visible group-[.active]:visible'
+            }
+          >
+            👉
+          </span>
         </NavLink>
       );
     });
