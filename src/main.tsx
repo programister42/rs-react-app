@@ -14,12 +14,10 @@ if (!rootElement) {
   throw new Error('Could not find root element');
 }
 
-const BASENAME = import.meta.env.BASE_URL;
-
 createRoot(rootElement).render(
   <StrictMode>
     <ErrorBoundary>
-      <HashRouter basename={BASENAME}>
+      <HashRouter>
         <Routes>
           <Route path="/" element={<App />}>
             <Route index element={<Navigate to="search" />} />
