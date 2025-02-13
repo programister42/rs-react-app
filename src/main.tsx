@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
+import { HashRouter, Navigate, Route, Routes } from 'react-router';
 import App from './App';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { FancyBackground } from './components/FancyBackground';
@@ -19,7 +19,7 @@ const BASENAME = import.meta.env.BASE_URL;
 createRoot(rootElement).render(
   <StrictMode>
     <ErrorBoundary>
-      <BrowserRouter basename={BASENAME}>
+      <HashRouter basename={BASENAME}>
         <Routes>
           <Route path="/" element={<App />}>
             <Route index element={<Navigate to="search" />} />
@@ -30,7 +30,7 @@ createRoot(rootElement).render(
             </Route>
           </Route>
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </ErrorBoundary>
   </StrictMode>
 );
