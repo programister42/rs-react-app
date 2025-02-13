@@ -6,6 +6,7 @@ import { ErrorBoundary } from './components/ErrorBoundary';
 import { FancyBackground } from './components/FancyBackground';
 import './index.css';
 import { DetailsPage } from './pages/DetailsPage';
+import NotFoundPage from './pages/NotFoundPage';
 import { SearchPage } from './pages/SearchPage';
 
 const rootElement = document.getElementById('root');
@@ -27,6 +28,8 @@ createRoot(rootElement).render(
               <Route path=":category/:workId" element={<DetailsPage />} />
             </Route>
           </Route>
+          <Route path="*" element={<Navigate to="/404" />} />
+          <Route path="/404" element={<NotFoundPage />} />
         </Routes>
       </HashRouter>
     </ErrorBoundary>
