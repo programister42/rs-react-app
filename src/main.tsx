@@ -5,7 +5,7 @@ import App from './App';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { FancyBackground } from './components/FancyBackground';
 import './index.css';
-import { DetailsPage } from './pages/DetailsPage';
+import { DetailsPage } from './pages/details-page/DetailsPage';
 import NotFoundPage from './pages/NotFoundPage';
 import { SearchPage } from './pages/SearchPage';
 

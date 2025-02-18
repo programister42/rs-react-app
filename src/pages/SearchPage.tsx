@@ -5,9 +5,9 @@ import { safeFetch } from '../api/safe-fetch';
 import { OPEN_LIBRARY_SEARCH_API } from '../api/urls';
 import { ErrorContext } from '../components/ErrorBoundary';
 import { ErrorButton } from '../components/ErrorButton';
-import { Pagination } from '../components/Pagination';
-import { Results } from '../components/Results';
-import { TopControls } from '../components/TopControls';
+import { Pagination } from '../components/pagination/Pagination';
+import { Results } from '../components/results/Results';
+import { TopControls } from '../components/top-controls/TopControls';
 
 const PAGE_SIZE = 5;
 
