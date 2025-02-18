@@ -8,7 +8,14 @@ export interface Book {
   key: string;
   cover_i: number;
   title: string;
-  author_name: string[];
+  author_name?: string[];
   first_publish_year: number;
   edition_count: number;
+}
+
+export interface Work {
+  key: string;
+  title: string;
+  description: string | { value: string };
+  covers: number[];
 }

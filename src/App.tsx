@@ -1,15 +1,5 @@
-import { Component } from 'react';
-import { ErrorBoundary } from './components/ErrorBoundary';
-import { SearchPage } from './pages/SearchPage';
+import { Outlet } from 'react-router';
 
-class App extends Component {
-  render() {
-    return (
-      <ErrorBoundary>
-        <SearchPage />
-      </ErrorBoundary>
-    );
-  }
+export default function App() {
+  return <Outlet />;
 }
-
-export default App;
